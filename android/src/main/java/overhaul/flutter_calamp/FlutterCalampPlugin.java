@@ -22,7 +22,11 @@ public class FlutterCalampPlugin implements MethodCallHandler {
   public void onMethodCall(MethodCall methodCall, Result result) {
     switch (methodCall.method) {
       case "start":
-        tagDetector.start(methodCall.argument("userName").toString(), methodCall.argument("password").toString());
+        tagDetector.start(
+          methodCall.argument("userName").toString(),
+          methodCall.argument("password").toString(),
+          methodCall.argument("appId").toString()
+        );
         result.success("Ok");
         break;
       case "stop":

@@ -25,19 +25,25 @@ import 'package:flutter_calamp/flutter_calamp.dart';
 
 // Init FlutterCalamp plugin:
 final calampPlugin = FlutterCalamp(username, password); 
-
-// Get last detected tags:
-List tags = calampPlugin.tags;
-
-// Get stream of detected tags:
-Stream tagsStream = calamp.stream$;
-
-// Start detecting tags
-calampPlugin.start();
-
-// Stop detecting tags
-calampPlugin.stop();
-
-// Clear Listeners when dispose
-calampPlugin.dispose()
 ```
+
+## Reference
+### FlutterCalamp 
+|                  |           Type          |             Description            |
+| :--------------- | :---------------------: |  :--------------------------------|
+| tags             |  List\<SCITag>          | Field, that returns latest scanned list of tags |
+| tagsStream       |  Stream<List\<SCITag>>  | Field, Stream that returns scanned list of tags |
+| start            |  Future\<void>          | Method, for starting tag detection. |
+| stop             |  Future\<void>          | Method, for stop tag detection. |
+
+### SCITag 
+|                  |           Type          |
+| :--------------- | :---------------------- |
+| id               |  String                 |
+| temperature      |  double                 |
+| batteryVoltage   |  double                 |
+| humidity         |  double                 |
+| rssi             |  int                    |
+| rxTime           |  int                    |
+| sequenceNumber   |  int                    |
+

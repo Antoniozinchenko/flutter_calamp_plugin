@@ -36,7 +36,6 @@ public class TagDetector {
                     e.printStackTrace();
                 }
             }
-            Log.e("TagDetector", jsonArray.toString());
             methodChannel.invokeMethod("onScannedTags", jsonArray.toString());
         }
         @Override
@@ -71,8 +70,8 @@ public class TagDetector {
         appContext = context;
         methodChannel = flutterMethodChannel;
     }
-    private void init(String userName, String password) {
-        final Credential credential = new Credential(userName, password, "d8b98aad-cc6e-4899-a86d-e2848eaf03b4");
+    private void init(String userName, String password, String appId) {
+        final Credential credential = new Credential(userName, password, appId);
         try {
             sciController = new SCIController.Builder()
                     .initialize(appContext)
@@ -84,12 +83,12 @@ public class TagDetector {
             methodChannel.invokeMethod("onError", se.getMessage());
         }
     }
-    public void start(String userName, String password) {
+    public void start(String userName, String password, String appId) {
         if (!isRunning && isLoggedIn && sciController != null) {
             isRunning = true;
             sciController.startSCITagService(sciTagsCallbackListener);
         } else if (!isRunning) {
-            init(userName, password);
+            init(userName, password, appId);
         }
     }
     public void stop() {

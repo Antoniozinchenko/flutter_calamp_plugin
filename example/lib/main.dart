@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_calamp_example/tags_list.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_calamp/flutter_calamp.dart';
 
+import 'package:flutter_calamp_example/footer.dart';
+
 void main() => runApp(MyApp());
 
-const username = 'someuser';
-const password = 'somepass';
+const username = 'USERNAME';
+const password = 'USER_PASSWORD';
+const appId = 'YOUR_APP_ID';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Provider(
-      builder: (BuildContext context) => FlutterCalamp(username, password),
+      builder: (BuildContext context) => FlutterCalamp(username, password, appId),
       dispose: (BuildContext context, FlutterCalamp bloc) => bloc.dispoce(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Flutter CalAmp Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
@@ -29,25 +33,14 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Plugin test'),
+        title: Text('Flutter CalAmp Demo'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            StreamBuilder<String>(
-                stream: Provider.of<FlutterCalamp>(context).stream$,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  return Text(
-                    snapshot.data ?? snapshot.error ?? 'Tap to start detecting',
-                  );
-                }),
-            RaisedButton(
-              onPressed: Provider.of<FlutterCalamp>(context).start,
-              child: Text('Start Calamp'),
-            ),
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(child: TagsList()),
+          Footer(),
+        ],
       ),
     );
   }

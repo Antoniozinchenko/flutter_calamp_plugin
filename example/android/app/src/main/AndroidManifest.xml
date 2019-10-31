@@ -8,7 +8,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="flutter_calamp_example"
+        android:label="Calamp Example"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
