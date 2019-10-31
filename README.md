@@ -24,7 +24,7 @@ import 'package:flutter_calamp/flutter_calamp.dart';
 
 
 // Init FlutterCalamp plugin:
-final calampPlugin = FlutterCalamp(username, password); 
+final calampPlugin = FlutterCalamp(username, password, appId); 
 ```
 
 ## Reference
