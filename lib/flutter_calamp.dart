@@ -26,7 +26,6 @@ class FlutterCalamp {
 
   Future<void> _invokeStart() async {
     try {
-      print('START PLUGIN!!!!!!');
       await _consumerChannel.invokeMethod('start', <String, String>{
         'userName': username,
         'password': password,
@@ -71,7 +70,6 @@ class FlutterCalamp {
 
   Future<void> stop() async {
     if (_runningSubject.value) {
-      print('STOP PLUGIN!!!!!!');
       _runningSubject.add(false);
       await _consumerChannel.invokeMethod('stop');
     }
